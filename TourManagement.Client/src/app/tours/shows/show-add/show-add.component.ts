@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ShowService } from '../shared/show.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { ShowSingleComponent } from '../show-single/show-single.component';
-
 
 @Component({
   selector: 'app-show-add',
@@ -15,19 +14,19 @@ import { ShowSingleComponent } from '../show-single/show-single.component';
 export class ShowAddComponent implements OnInit {
   private sub: Subscription;
   private tourId: string;
- public showCollectionForm: FormGroup;
+  public showCollectionForm: FormGroup;
 
   constructor(private showService: ShowService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-     private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.showCollectionForm = this.formBuilder.group({
       shows: this.formBuilder.array([])
     });
 
-   this.addShow();
+    this.addShow();
 
     // get route data (tourId)
     this.sub = this.route.params.subscribe(
@@ -65,4 +64,3 @@ export class ShowAddComponent implements OnInit {
   }
 
 }
-

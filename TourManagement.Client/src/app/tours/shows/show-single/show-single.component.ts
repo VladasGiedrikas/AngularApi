@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-
 @Component({
   selector: 'app-show-single',
   templateUrl: './show-single.component.html',
@@ -16,7 +15,6 @@ export class ShowSingleComponent implements OnInit {
 
   constructor() { }
 
-
   static createShow() {
     return new FormGroup(
       {
@@ -25,7 +23,8 @@ export class ShowSingleComponent implements OnInit {
         city: new FormControl([]),
         country: new FormControl([])
       });
-    }
+  }
+
   ngOnInit() {
   }
 

@@ -12,7 +12,6 @@ export class RedirectSilentRenewComponent implements OnInit {
   constructor(private openIdConnectService: OpenIdConnectService) { }
 
   ngOnInit() {
- 
     this.openIdConnectService.handleSilentCallback();
   }
 }

@@ -9,6 +9,7 @@ export class OpenIdConnectService {
   private userManager: UserManager = new UserManager(environment.openIdConnectSettings);
   private currentUser: User;
 
+
   userLoaded$ = new ReplaySubject<boolean>(1);
 
   get userAvailable(): boolean {
@@ -29,13 +30,15 @@ export class OpenIdConnectService {
       this.currentUser = user;
       this.userLoaded$.next(true);
     });
+
     this.userManager.events.addUserUnloaded((e) => {
       if (!environment.production) {
         console.log('User unloaded');
       }
       this.currentUser = null;
-     this.userLoaded$.next(false);
+      this.userLoaded$.next(false);
     });
+
   }
 
   triggerSignIn() {
@@ -45,6 +48,7 @@ export class OpenIdConnectService {
       }
     });
   }
+
   handleCallback() {
     this.userManager.signinRedirectCallback().then(function (user) {
       if (!environment.production) {
@@ -52,6 +56,7 @@ export class OpenIdConnectService {
       }
     });
   }
+
   handleSilentCallback() {
     this.userManager.signinSilentCallback().then(function (user) {
       this.currentUser = user
@@ -60,6 +65,7 @@ export class OpenIdConnectService {
       }
     });
   }
+
   triggerSignOut() {
     this.userManager.signoutRedirect().then(function (resp) {
       if (!environment.production) {

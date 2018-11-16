@@ -22,10 +22,10 @@ export class SigninOidcComponent implements OnInit {
         if (!environment.production) {
           console.log("An error happened: user wasn't loaded.");
         }
-     }
+      }
     });
 
-    this.openIdConnectService.handleCallback(); 
+    this.openIdConnectService.handleCallback();
   }
 
 }

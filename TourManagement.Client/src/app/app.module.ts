@@ -28,7 +28,6 @@ import { SigninOidcComponent } from './signin-oidc/signin-oidc.component';
 import { RequireAuthenticatedUserRouteGuardService } from './shared/require-authenticated-user-route-guard.service';
 import { AddAuthorizationHeaderInterceptor } from './shared/add-authorization-header-interceptor';
 import { RedirectSilentRenewComponent } from './redirect-silent-renew/redirect-silent-renew.component';
-import { BaseConverterComponent } from './base-converter/base-converter.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +41,7 @@ import { BaseConverterComponent } from './base-converter/base-converter.componen
     ShowAddComponent,
     ShowSingleComponent,
     SigninOidcComponent,
-    RedirectSilentRenewComponent,
-    BaseConverterComponent,
-    BaseConverterComponent
+    RedirectSilentRenewComponent
   ],
   imports: [
     BrowserModule,
@@ -74,9 +71,9 @@ import { BaseConverterComponent } from './base-converter/base-converter.componen
       useClass: HandleHttpErrorInterceptor,
       multi: true,
     },
-    GlobalErrorHandler, ErrorLoggerService, TourService,
-     MasterDataService, ShowService, DatePipe, OpenIdConnectService,
-    RequireAuthenticatedUserRouteGuardService],
+    GlobalErrorHandler, ErrorLoggerService, TourService, 
+    MasterDataService, ShowService, DatePipe, OpenIdConnectService,
+  RequireAuthenticatedUserRouteGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
@@ -84,6 +81,7 @@ export class AppModule {
   constructor() {
 
     // automapper mappings
+
     automapper.createMap('TourFormModel', 'TourForCreation')
       .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => { opts.ignore(); })
       .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => { opts.ignore(); })
@@ -95,12 +93,12 @@ export class AppModule {
       .forMember('bandid', function (opts) { opts.mapFrom('band'); })
       .forMember('managerid', function (opts) { opts.mapFrom('manager'); })
 
-      automapper.createMap('TourFormModel', 'TourWithShowsForCreation')
+    automapper.createMap('TourFormModel', 'TourWithShowsForCreation')
       .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => { opts.ignore(); })
       .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => { opts.ignore(); })
       .forMember('bandid', function (opts) { opts.mapFrom('band'); });
 
-      automapper.createMap('TourFormModel', 'TourWithManagerAndShowsForCreation')
+    automapper.createMap('TourFormModel', 'TourWithManagerAndShowsForCreation')
       .forSourceMember('band', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => 
       { opts.ignore(); })
       .forSourceMember('manager', (opts: AutoMapperJs.ISourceMemberConfigurationOptions) => 
@@ -108,9 +106,9 @@ export class AppModule {
       .forMember('bandid', function (opts) { opts.mapFrom('band'); })
       .forMember('managerid', function (opts) { opts.mapFrom('manager'); })
 
-      automapper.createMap('ShowCollectionFormModelShowsArray', 'ShowCollectionForCreation');
+      automapper.createMap('ShowCollectionFormModelShowsArray', 
+      'ShowCollectionForCreation');
 
       automapper.createMap('TourFormModel', 'TourForUpdate');
-
   }
 }

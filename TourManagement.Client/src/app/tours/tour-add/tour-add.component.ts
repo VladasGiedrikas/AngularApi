@@ -21,7 +21,8 @@ export class TourAddComponent implements OnInit {
   public tourForm: FormGroup;
   bands: Band[];
   managers: Manager[];
-  private isAdmin: boolean = (this.openIdConnectService.user.profile.role === "Administrator");
+  private isAdmin: boolean = 
+    (this.openIdConnectService.user.profile.role === "Administrator");
 
   constructor(private masterDataService: MasterDataService,
     private tourService: TourService,

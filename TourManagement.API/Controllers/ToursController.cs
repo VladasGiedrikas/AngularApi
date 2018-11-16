@@ -123,7 +123,7 @@ namespace TourManagement.API.Controllers
             new[] { "application/json",
                     "application/vnd.marvin.tourforcreation+json" })]
         public async Task<IActionResult> AddTour([FromBody] TourForCreation tour)
-        {
+        {   
             return await AddSpecificTour(tour);
         }
 
@@ -180,7 +180,7 @@ namespace TourManagement.API.Controllers
             {
                 return new UnprocessableEntityObjectResult(ModelState);
             }
-
+        
             var tourEntity = Mapper.Map<Entities.Tour>(tour);
 
             if (tourEntity.ManagerId == Guid.Empty)

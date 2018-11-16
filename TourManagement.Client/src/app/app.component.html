@@ -9,9 +9,6 @@
                 <li>
                     <a [routerLink]="['/about']">About</a>
                 </li>
-                <li>
-                    <a [routerLink]="['/base-converter']">Base Converter</a>
-                </li>
                 <li *ngIf='openIdConnectService.userAvailable'>
                     <a (click)="openIdConnectService.triggerSignOut()">Sign out</a>
                 </li>

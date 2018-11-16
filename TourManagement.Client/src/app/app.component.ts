@@ -12,7 +12,4 @@ export class AppComponent {
 
   constructor(private openIdConnectService: OpenIdConnectService) {
   }
-  ngOnInit(): void {
-
-  }
 }

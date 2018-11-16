@@ -11,6 +11,7 @@ namespace TourManagement.API.Controllers
 {
     [Route("api/tours/{tourId}/shows")]
     [Authorize]
+
     public class ShowsController : Controller
     {
         private readonly ITourManagementRepository _tourManagementRepository;

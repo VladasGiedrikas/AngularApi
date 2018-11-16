@@ -29,7 +29,8 @@ namespace TourManagement.API.Services
             _userInfoService = userInfoService ?? throw new ArgumentNullException(nameof(userInfoService));
         }
         
-        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken 
+            = default(CancellationToken))
         {
             // get added or updated entries
             var addedOrUpdatedEntries = ChangeTracker.Entries()

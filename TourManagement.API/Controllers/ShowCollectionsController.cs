@@ -23,25 +23,24 @@ namespace TourManagement.API.Controllers
         }
 
         // api/tours/{tourId}/showcollections/(id1,id2, … )
-        [HttpGet("({showIds})", Name = "GetShowCollection")]
+        [HttpGet("({showIds})", Name ="GetShowCollection")]
         [RequestHeaderMatchesMediaType("Accept", new[] { "application/json",
-                    "application/vnd.marvin.showcollection+json" })]
+            "application/vnd.marvin.showcollection+json" })]
         public async Task<IActionResult> GetShowCollection(Guid tourId,
           [ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> showIds)
         {
-
             if (showIds == null || !showIds.Any())
             {
                 return BadRequest();
             }
-
+            
             // check if the tour exists
             if (!await _tourManagementRepository.TourExists(tourId))
             {
                 return NotFound();
             }
 
-                        var showEntities = await _tourManagementRepository.GetShows(tourId, showIds);
+            var showEntities = await _tourManagementRepository.GetShows(tourId, showIds);
 
             if (showIds.Count() != showEntities.Count())
             {
@@ -49,14 +48,14 @@ namespace TourManagement.API.Controllers
             }
 
             var showCollectionToReturn = Mapper.Map<IEnumerable<Show>>(showEntities);
-            return Ok(showCollectionToReturn);
+            return Ok(showCollectionToReturn);            
         }
 
 
         [HttpPost]
-        [RequestHeaderMatchesMediaType("Content-Type",
+        [RequestHeaderMatchesMediaType("Content-Type", 
             new[] { "application/json",
-                    "application/vnd.marvin.showcollectionforcreation+json" })]
+            "application/vnd.marvin.showcollectionforcreation+json" })]
         public async Task<IActionResult> CreateShowCollection(
            Guid tourId,
            [FromBody] IEnumerable<ShowForCreation> showCollection)
@@ -90,7 +89,6 @@ namespace TourManagement.API.Controllers
             return CreatedAtRoute("GetShowCollection",
               new { tourId, showIds = showIdsAsString },
               showCollectionToReturn);
-
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourManagement.API.Helpers
 {
-    public class CustomizedValidationResult :
+    public class CustomizedValidationResult : 
         Dictionary<string, IEnumerable<CustomizedValidationError>>
     {
         public CustomizedValidationResult()
@@ -14,13 +14,13 @@ namespace TourManagement.API.Helpers
         {
         }
 
-        public CustomizedValidationResult(ModelStateDictionary modelState)
+        public CustomizedValidationResult(ModelStateDictionary modelState) 
             : this()
         {
             if (modelState == null)
             {
                 throw new ArgumentNullException(nameof(modelState));
-            }
+            }            
 
             foreach (var keyModelStatePair in modelState)
             {
@@ -30,7 +30,7 @@ namespace TourManagement.API.Helpers
                 {
                     var errorsToAdd = new List<CustomizedValidationError>();
                     foreach (var error in errors)
-                    {
+                    {  
                         // split the message to get the validator key
                         var keyAndMessage = error.ErrorMessage.Split('|');
 
@@ -52,5 +52,5 @@ namespace TourManagement.API.Helpers
                 }
             }
         }
-    }
+    }    
 }

@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44380/api/',
+  apiUrl: 'https://localhost:44353/api/',
   openIdConnectSettings: {
     authority: 'https://localhost:44398/',
     client_id: 'tourmanagementclient',
@@ -17,3 +17,4 @@ export const environment = {
     silent_redirect_uri: 'https://localhost:4200/redirect-silentrenew'
   }
 };
+
